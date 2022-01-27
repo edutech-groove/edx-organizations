@@ -9,8 +9,13 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_oauth.authentication import OAuth2Authentication
 
 from organizations.models import Organization
-from organizations.serializers import OrganizationSerializer
+# from organizations.serializers import OrganizationSerializer
 
+
+try:
+    from program_tools.serializers import OrganizationSerializer
+except ImportError:
+    from organizations.serializers import OrganizationSerializer
 
 class OrganizationsViewSet(viewsets.ReadOnlyModelViewSet):
     """Organization view to fetch list organization data or single organization
